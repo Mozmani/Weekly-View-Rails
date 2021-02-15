@@ -14,6 +14,10 @@
 * Install yarn ( npm install --global yarn )
 * Install Rails ( gem install rails )
 
+* ### If you do not have install bundler, gem install bundler
+
+* install bundler (essesntially npm install for rails)
+
 * create a db 
 ```
 createdb -U (your username) calendar_server_development
