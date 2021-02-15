@@ -1,24 +1,4 @@
-# README
+# Weekly View Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+... in progress Rails API server for Weekly View.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
