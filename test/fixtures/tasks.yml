@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  calendar_id: one
+  desc: MyString
+  start: 1
+  end: 1
+
+two:
+  name: MyString
+  calendar_id: two
+  desc: MyString
+  start: 1
+  end: 1
