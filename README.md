@@ -2,6 +2,51 @@
 
 ... in progress Rails API server for Weekly View.
 
+
+
+
+## Quick Start for users
+
+After you have everything set up
+```
+$ gem install bundler
+
+bundle
+
+rails db:migrate
+
+rails s
+```
+that will give you the bundler, db and launch the server on 3000
+
+## routes for user
+
+```
+http://localhost:3000/v1/users  --- POST Create only
+
+    "user":{
+        "email":"tactic@gmail.com",
+        "password":"123456",
+        "password_confirmation":"123456",
+        "first_name": "Mister",
+        "last_name": "Test-a-roo-ski"
+    }
+
+ http://localhost:3000/v1/sessions --- POST Login route
+
+{
+        "email":"tactic@gmail.com",
+        "password":"123456"
+}
+
+```
+
+
+
+
+
+
+
 ## How to get started (If you don't have Ruby)
 
 * [Install Ruby](https://rubyinstaller.org/)
@@ -28,29 +73,3 @@ createdb -U (your username) calendar_server_development
 rails db:migrate
 ```
 
-## Progress so far
-```
--- creates a new rails api app with no sprockets(js make up, don't need as a server) ans postgres SQL
-rails new calendar_server --api --no-sprockets -d postgresql
-
-
--- generate a rails model -- makes a migration file for user table
-rails g model user
-
--- create db for for the new migration model
-createdb -U dunder_mifflin calendar_server_development
-
--- migrate the rails db
-rails db:migrate
-
--- creates the controler for users
-rails g controller v1/users
-
-
--- after setting up users controller and routes to see route paths. (ie: localhost3000/v1/users)
--- can run rails server and check the location in url
-rails routes
-
-
-
-```
