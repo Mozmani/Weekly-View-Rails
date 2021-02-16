@@ -4,6 +4,7 @@ class CreateCalendars < ActiveRecord::Migration[6.1]
 
       t.integer :wake_hour
       t.integer :sleep_hour
+      t.string :slug
       
       #t.timestamps
     end

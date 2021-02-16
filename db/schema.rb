@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_000757) do
+ActiveRecord::Schema.define(version: 2021_02_16_030017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2021_02_16_000757) do
   create_table "calendars", force: :cascade do |t|
     t.integer "wake_hour"
     t.integer "sleep_hour"
-    t.bigint "user_id", null: false
-    t.string "calendar_name"
+    t.string "slug"
+    t.bigint "user_id"
+    t.string "name"
+    t.index ["slug"], name: "index_calendars_on_slug", unique: true
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
