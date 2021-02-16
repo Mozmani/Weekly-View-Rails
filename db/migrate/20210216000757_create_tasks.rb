@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.string :desc
       t.integer :start
       t.integer :end
-      t.interger :day
+      t.integer :day
 
       t.timestamps
     end

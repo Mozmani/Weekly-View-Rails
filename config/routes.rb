@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: {format: :json} do
     resources :calendars
     resources :sessions, only: [:create, :destroy]
+    resources :users, only: [:create]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
