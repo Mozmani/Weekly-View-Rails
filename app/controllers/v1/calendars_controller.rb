@@ -1,5 +1,5 @@
 class V1::CalendarsController < ApplicationController
-  # tells controller that @calendars is all users, renders as json
+  # tells controller that @calendars is all calenders, renders as json
   # basic get route
   def index
   
@@ -9,15 +9,23 @@ class V1::CalendarsController < ApplicationController
   end
 
 
-  # post route to create a new user
+  
+
+
+  def show
+    @calendar = Calendar.where(id: params[:id]).first
+    render :show
+  end
+  
+  # post route to create a new calender
   def create
-    @calendar = Calendar.new(user_params)
+    @calendar = Calendar.new(calendar_params)
     
     @calendar.save
     render json: @calendar, status: :created
   end
 
-  # delete route to delete a user
+  # delete route to delete a Calendar
   def destroy
     @calendar = Calendar.where(id: params[:id]).first
     if @calendar.destroy
@@ -29,7 +37,7 @@ class V1::CalendarsController < ApplicationController
 
   private
 
-  def user_params
+  def calendar_params
     params.require(:calendar).permit(:wake_hour, :sleep_hour, :user_id)
   end
 
