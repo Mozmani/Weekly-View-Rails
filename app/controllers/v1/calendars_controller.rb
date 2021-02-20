@@ -21,8 +21,12 @@ class V1::CalendarsController < ApplicationController
   def create
     @calendar = Calendar.new(calendar_params)
     
-    @calendar.save
-    render json: @calendar, status: :created
+    if @calendar.save
+      render json: @calendar, status: :created
+    else
+      head(:unprocessable_entity)
+    end
+
   end
 
   # delete route to delete a Calendar
@@ -38,7 +42,7 @@ class V1::CalendarsController < ApplicationController
   private
 
   def calendar_params
-    params.require(:calendar).permit(:wake_hour, :sleep_hour, :user_id)
+    params.require(:calendar).permit(:wake_hour, :sleep_hour, :user_id, :name)
   end
 
 end
