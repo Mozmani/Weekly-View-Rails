@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :calendars
     resources :sessions, only: [:create, :destroy]
     resources :users, only: [:create, :show]
+    resources :tasks
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

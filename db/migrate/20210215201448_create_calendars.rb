@@ -2,8 +2,8 @@ class CreateCalendars < ActiveRecord::Migration[6.1]
   def change
     create_table :calendars do |t|
 
-      t.integer :wake_hour
-      t.integer :sleep_hour
+      t.float :wake_hour
+      t.float :sleep_hour
       t.string :slug
       
       #t.timestamps

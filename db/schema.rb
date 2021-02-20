@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_030017) do
   enable_extension "plpgsql"
 
   create_table "calendars", force: :cascade do |t|
-    t.integer "wake_hour"
-    t.integer "sleep_hour"
+    t.float "wake_hour"
+    t.float "sleep_hour"
     t.string "slug"
     t.bigint "user_id"
     t.string "name"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_030017) do
     t.string "name"
     t.bigint "calendar_id"
     t.string "desc"
-    t.integer "start"
-    t.integer "end"
+    t.float "start"
+    t.float "end"
     t.integer "day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
