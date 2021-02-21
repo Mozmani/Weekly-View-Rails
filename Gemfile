@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
 gem 'friendly_id', '~> 5.4.0'
+gem 'jwt'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
