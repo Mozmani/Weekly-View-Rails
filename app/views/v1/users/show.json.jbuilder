@@ -5,7 +5,7 @@ end
   
 json.calendars do
 
-  json.array!(@user.calendars) do |calendar|
+  json.array!(@user.calendars.order("id",)) do |calendar|
     
       json.calendar calendar.id
       json.name calendar.name
@@ -14,7 +14,7 @@ json.calendars do
       json.sleep_hour calendar.sleep_hour
 
       json.tasks do
-        json.array!(calendar.tasks) do |task|
+        json.array!(calendar.tasks.order("day", "start")) do |task|
           json.id task.id
           json.day task.day
           json.name task.name

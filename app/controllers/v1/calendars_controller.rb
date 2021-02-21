@@ -9,9 +9,8 @@ class V1::CalendarsController < ApplicationController
   end
 
 
-  
 
-
+  # Get by :id 
   def show
     @calendar = Calendar.where(id: params[:id]).first
     render :show
@@ -24,7 +23,7 @@ class V1::CalendarsController < ApplicationController
     if @calendar.save
       render json: @calendar, status: :created
     else
-      head(:unprocessable_entity)
+      render json: {message: "could not create calendar", errors: @calendar.errors.full_messages }
     end
 
   end
@@ -35,9 +34,23 @@ class V1::CalendarsController < ApplicationController
     if @calendar.destroy
       head(:ok)
     else
-      head(:unprocessable_entity)
+      render json: {message: "calendar not found", errors: @calendar.errors.full_messages }
     end
   end
+
+
+  def update
+    @calendar = Calendar.where(id: params[:id]).first
+    if @calendar.update(calendar_params)
+      render json: @calendar
+    else
+      render json: {message: "calendar could not be updated", errors: @calendar.errors.full_messages }
+    end
+    
+
+  end
+
+
 
   private
 
