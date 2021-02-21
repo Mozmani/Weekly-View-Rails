@@ -10,10 +10,7 @@ class V1:: SessionsController < ApplicationController
 
        
         if @user.valid_password?(params[:password])
-            jwt = JWT.encode(
-            {user_id: @user.id, exp: (Time.now + 1.hours).to_i}, 
-            Rails.application.secrets.secret_key_base,
-            'HS256')
+            jwt = JsonWebToken.encode(user_id: @user.id)
         
 
             render :create, locals:{token: jwt }, status: :created
