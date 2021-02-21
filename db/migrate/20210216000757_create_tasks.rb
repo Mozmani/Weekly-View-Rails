@@ -7,6 +7,8 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.float :start
       t.float :end
       t.integer :day
+      t.string :text_color
+      t.string :background_color
 
       t.timestamps
     end

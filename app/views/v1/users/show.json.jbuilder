@@ -21,6 +21,8 @@ json.calendars do
           json.desc task.desc
           json.start task.start
           json.end task.end
+          json.text_color task.text_color
+          json.background_color task.background_color
         end  
       end
     

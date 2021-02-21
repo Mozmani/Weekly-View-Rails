@@ -9,7 +9,7 @@ json.data do
     
   end
 
-  json.tasks @calendar.tasks.order("day", "start"), :day, :name, :desc, :start, :end
+  json.tasks @calendar.tasks.order("day", "start"), :day, :name, :desc, :start, :end, :text_color, :background_color
   
 
 end

@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_030017) do
     t.float "start"
     t.float "end"
     t.integer "day"
+    t.string "text_color"
+    t.string "background_color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["calendar_id"], name: "index_tasks_on_calendar_id"

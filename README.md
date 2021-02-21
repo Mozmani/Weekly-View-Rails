@@ -41,6 +41,31 @@ http://localhost:3000/v1/users  --- POST Create only
 
 ```
 
+## brief notes for routes (pre swagger doc)
+
+reset the db. fasted way here:
+```
+dropdb calendar_server_development
+createdb -U (username_here) calendar_server_development
+rails db:migrate
+rails db:seed
+
+```
+
+set up on localhost3000/v1
+
+### Routes
+
+users: GET(:id) - gives all useful data / POST
+
+sessions: POST(login, gives jwt) The routes are not protected yet on the backend.
+
+calendars: GET gives all or (:id) for all tasks sorted by specific calendar / POST / PATCH
+
+tasks: POST
+
+
+
 
 
 

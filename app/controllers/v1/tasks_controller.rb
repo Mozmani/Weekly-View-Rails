@@ -33,7 +33,7 @@ module V1
   
     def task_params
     
-      params.require(:task).permit(:calendar_id, :name, :desc, :start, :end, :day)
+      params.require(:task).permit(:calendar_id, :name, :desc, :start, :end, :day, :text_color, :background_color)
     
     end
 
