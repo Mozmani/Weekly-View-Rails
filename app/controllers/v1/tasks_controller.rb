@@ -1,6 +1,6 @@
 module V1
   class TasksController < ApplicationController
-    
+    before_action :authorized
     def index
       @task = Task.all
       render json: @task.order("day", "start"), status: :ok

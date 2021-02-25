@@ -1,6 +1,6 @@
 class V1::CalendarsController < ApplicationController
   #before_action :authenticate_request!
-  
+  before_action :authorized
   # tells controller that @calendars is all calenders, renders as json
   # basic get route
   def index

@@ -1,32 +1,41 @@
 class ApplicationController < ActionController::API
-  protected
-  # Validates the token and user and sets the @current_user scope
-def authenticate_request!
-  if !payload || !JsonWebToken.valid_payload(payload.first)
-    return invalid_authentication
+  
+  before_action :authorized
+
+  def encode_token(payload)
+    JWT.encode(payload, Rails.application.secrets.secret_key_base)
   end
 
-  load_current_user!
-  invalid_authentication unless @current_user
-end
+  def auth_header
+    # { Authorization: 'Bearer <token>' }
+    request.headers['Authorization']
+  end
 
-# Returns 401 response. To handle malformed / invalid requests.
-def invalid_authentication
-  render json: {error: 'Invalid Request'}, status: :unauthorized
-end
+  def decoded_token
+    if auth_header
+      token = auth_header.split(' ')[1]
+      # header: { 'Authorization': 'Bearer <token>' }
+      begin
+        JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+      rescue JWT::DecodeError
+        nil
+      end
+    end
+  end
 
-private
-# Deconstructs the Authorization header and decodes the JWT token.
-def payload
-  auth_header = request.headers['Authorization']
-  token = auth_header.split(' ').last
-  JsonWebToken.decode(token)
-rescue
-  nil
-end
+  def logged_in_user
+    if decoded_token
+      user_id = decoded_token[0]['user_id']
+      @user = User.find_by(id: user_id)
+    end
+  end
 
-# Sets the @current_user with the user_id from payload
-def load_current_user!
-  @current_user = User.find_by(id: payload[0]['user_id'])
-end
+  def logged_in?
+    !!logged_in_user
+  end
+
+  def authorized
+    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+  end
+
 end
