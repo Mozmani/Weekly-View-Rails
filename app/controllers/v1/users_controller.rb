@@ -1,6 +1,6 @@
 module V1
   class UsersController < ApplicationController
-    
+    before_action :authorized, only: [:index, :show]
     def index
   
       @users = Users.all
