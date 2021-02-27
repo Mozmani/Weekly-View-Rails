@@ -14,7 +14,7 @@ module V1
       if @user.save
         render :create
       else
-        head(:unprocessable_entity)
+        render json: {message: "could not create user", errors: @user.errors.full_messages }
       end
     end
 
@@ -24,12 +24,12 @@ module V1
     end
 
   
+    private
     def user_params
-    
       params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)
-    
     end
 
+    
   
   end
 end
