@@ -4,6 +4,96 @@ info:
   title: API V1
   version: v1
 paths:
+  "/v1/calendars":
+    post:
+      summary: Creates a Calendar
+      tags:
+      - Calendars
+      parameters: []
+      responses:
+        '201':
+          description: calendar created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  calendar:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      user_id:
+                        type: number
+                      wake_hour:
+                        type: number
+                      sleep_hour:
+                        type: number
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                user_id:
+                  type: number
+                wake_hour:
+                  type: number
+                sleep_hour:
+                  type: number
+              required:
+              - name
+              - user_id
+              - wake_hour
+              - sleep_hour
+  "/v1/calendars{id}":
+    get:
+      summary: retrieves a calendar and tasks
+      tags:
+      - calendar by id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: name found!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  wake_hour:
+                    type: number
+                  sleep_hour:
+                    type: number
+                  tasks:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      desc:
+                        type: string
+                      start:
+                        type: number
+                      end:
+                        type: number
+                required:
+                - id
+        '404':
+          description: User not found
   "/v1/users":
     post:
       summary: Creates a user
@@ -87,9 +177,9 @@ paths:
                       name:
                         type: string
                       wake_hour:
-                        type: float
+                        type: number
                       sleep_hour:
-                        type: float
+                        type: number
                       tasks:
                         type: object
                         properties:
@@ -98,9 +188,9 @@ paths:
                           desc:
                             type: string
                           start:
-                            type: float
+                            type: number
                           end:
-                            type: float
+                            type: number
                 required:
                 - id
         '404':

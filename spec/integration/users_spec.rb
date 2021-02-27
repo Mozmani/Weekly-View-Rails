@@ -61,7 +61,7 @@ describe 'Users API' do
       tags 'Users by id'
       produces 'application/json'
       parameter name: :id, :in => :path, :type => :string
-
+      
       response '200', 'name found!' do
         schema type: :object,
         properties: {
@@ -72,14 +72,14 @@ describe 'Users API' do
             properties:{
               id: {type: :integer},
               name: {type: :string},
-              wake_hour: {type: :float},
-              sleep_hour: {type: :float},
+              wake_hour: {type: :number},
+              sleep_hour: {type: :number},
               tasks: {type: :object,
                 properties:{
                   name: {type: :string},
                   desc: {type: :string},
-                  start: {type: :float},
-                  end: {type: :float}
+                  start: {type: :number},
+                  end: {type: :number}
                 }
               
               }
