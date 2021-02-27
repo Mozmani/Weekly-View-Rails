@@ -51,16 +51,17 @@ describe 'Calendars API' do
 
   path '/v1/calendars{id}' do
     get 'retrieves a calendar and tasks' do
-      tags 'calendar by id'
+      tags 'Gets a Calendar by id'
       produces 'application/json'
       parameter name: :id, :in => :path, :type => :string
       
-      response '200', 'name found!' do
+      response '200', 'calendar found!' do
         schema type: :object,
           properties:{
                                   
               id: {type: :integer},
               name: {type: :string},
+              user_id: {type: :number},
               wake_hour: {type: :number},
               sleep_hour: {type: :number},
               tasks: {type: :object,
@@ -85,6 +86,38 @@ describe 'Calendars API' do
         run_test!
       end
     end
+    patch 'edits a calendar' do
+      tags 'Edits a Calendar by id'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, :in => :path, :type => :string 
+      parameter name: :calendar, in: :body, :type => :object,
+      schema: {
+        type: :object,
+        properties:{
+          name: {type: :string},
+          user_id: {type: :number},
+          wake_hour: {type: :number},
+          sleep_hour: {type: :number}
+        },
+        required: [ 'id']
+      }
+      
+      response '204', 'calendar updated sucessfully!' do
+        schema type: :object,
+        properties: {
+          name: {type: :string},
+          user_id: {type: :number},
+          wake_hour: {type: :number},
+          sleep_hour: {type: :number}
+        }
+        let(:id) {Calendar.update(name: "Mike's Calendar", user_id: 1, wake_hour: 8, sleep_hour:22).id}
+        run_test!
+      
+      end
+
+    end
+
   end
 
 end
