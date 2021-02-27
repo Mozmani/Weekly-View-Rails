@@ -8,7 +8,7 @@ paths:
     post:
       summary: Creates a Calendar
       tags:
-      - Calendars
+      - Add a Calendar
       parameters: []
       responses:
         '201':
@@ -138,11 +138,111 @@ paths:
                   type: number
               required:
               - id
+  "/v1/tasks":
+    post:
+      summary: Creates a Task
+      tags:
+      - Post Task
+      parameters: []
+      responses:
+        '201':
+          description: task created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      desc:
+                        type: string
+                      calendar_id:
+                        type: number
+                      start:
+                        type: number
+                      end:
+                        type: number
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                desc:
+                  type: string
+                calendar_id:
+                  type: number
+                start:
+                  type: number
+                end:
+                  type: number
+              required:
+              - name
+              - desc
+              - calendar_id
+              - start
+              - end
+  "/v1/tasks/{id}":
+    patch:
+      summary: Edits a Task
+      tags:
+      - Edits a Task by id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: calendar updated sucessfully!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  desc:
+                    type: string
+                  calendar_id:
+                    type: number
+                  start:
+                    type: number
+                  end:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                desc:
+                  type: string
+                calendar_id:
+                  type: number
+                start:
+                  type: number
+                end:
+                  type: number
+              required:
+              - id
   "/v1/users":
     post:
       summary: Creates a user
       tags:
-      - Users
+      - Add a User
       parameters: []
       responses:
         '201':
@@ -194,7 +294,7 @@ paths:
     get:
       summary: retrieves a user
       tags:
-      - Users by id
+      - " Get a User by id"
       parameters:
       - name: id
         in: path

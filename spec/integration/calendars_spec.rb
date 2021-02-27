@@ -6,7 +6,7 @@ describe 'Calendars API' do
   path '/v1/calendars' do
     
     post 'Creates a Calendar' do
-      tags 'Calendars'
+      tags 'Add a Calendar'
       consumes 'application/json'
       produces 'application/json'
       
