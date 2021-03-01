@@ -1,5 +1,5 @@
 class V1:: SessionsController < ApplicationController 
-    
+    before_action :authorized, only: [:destroy]
     # def show
     #     current_user ? head(:ok) : head(:unauthorized)
         
